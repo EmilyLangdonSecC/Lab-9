@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--This script holds the jQuery link and allows it to be used.-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--These links allow us to use the X button from Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--These links allow us to use our chosen font from Google Fonts.-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <title>Cat Photo Gallery</title>
+</head>
+
+<body>
+    <header>
+        <h1>Look at Emily's Cats</h1>
+        <!--These buttons allow you to select which cat you want to view.-->
+        <div class="buttons">
+            <button id="lavenderButton" class="button">Lavender</button>
+            <button id="mogButton" class="button">Mog</button>
+            <button id="olafButton" class="button">Olaf</button>
+            <button id="mimiButton" class="button">Mimi</button>
+            <button id="minervaButton" class="button">Minerva</button>
+        </div>
+    </header>
+
+    <main>
+        <!--This is an X button that will appear when an image is clicked and lightbox mode is activated. It is how you get out of lightbox mode.-->
+        <span id="close-button" class="material-symbols-outlined">
+            close
+        </span>
+        <!--Each cat has their own div element to hold their images.-->
+        <div id="lavender" class="catdiv">
+            <img id="imgid" class="catimg" src="Lavender 1.JPG">
+            <img id="imgid" class="catimg" src="Lavender 2.JPG">
+            <img id="imgid" class="catimg" src="Lavender 3.JPG">
+        </div>
+        <div id="mog" class="catdiv">
+            <img id="imgid" class="catimg" src="Mog 1.JPG">
+            <img id="imgid" class="catimg" src="Mog 2.JPG">
+            <img id="imgid" class="catimg" src="Mog 3.JPG">
+        </div>
+        <div id="olaf" class="catdiv">
+            <img id="imgid" class="catimg" src="Olaf 1.jpg">
+            <img id="imgid" class="catimg" src="Olaf 2.jpg">
+            <img id="imgid" class="catimg" src="Olaf 3.JPEG">
+        </div>
+        <div id="mimi" class="catdiv">
+            <img id="imgid" class="catimg" src="Mimi 1.jpg">
+            <img id="imgid" class="catimg" src="Mimi 2.jpg">
+            <img id="imgid" class="catimg" src="Mimi 3.jpg">
+        </div>
+        <div id="minerva" class="catdiv">
+            <img id="imgid" class="catimg" src="Minerva 1.jpg">
+            <img id="imgid" class="catimg" src="Minerva 2.jpg">
+            <img id="imgid" class="catimg" src="Minerva 3.JPG">
+        </div>
+        <footer>
+            <a href="https://www.youtube.com/watch?v=L_jWHffIx5E">What on earth is this?</a>
+        </footer>
+    </main>
+    <script>
+        /*These commands are executed when the webpage loads. The X button is hidden, and Lavender is selected as the first cat to view. Additionally, all other cats are 
+        hidden.*/
+        $(document).ready(function () {
+            $(".material-symbols-outlined").hide();
+            $("#lavender").show(500);
+            $("#mog").hide();
+            $("#olaf").hide();
+            $("#mimi").hide();
+            $("#minerva").hide();
+            $("#lavenderButton").css("background-color", "#ffa500");
+        })
+        //These are functions for selecting each cat. They show the div for the cat in question while hiding all other divs.
+        $("#lavenderButton").click(function () {
+            $("#lavender").show(500);
+            $("#mog").hide(500);
+            $("#olaf").hide(500);
+            $("#mimi").hide(500);
+            $("#minerva").hide(500);
+            $("button").css("background-color", "#ffffff");
+            $("#lavenderButton").css("background-color", "#ffa500");
+        });
+        $("#mogButton").click(function () {
+            $("#mog").show(500);
+            $("#lavender").hide(500);
+            $("#olaf").hide(500);
+            $("#mimi").hide(500);
+            $("#minerva").hide(500);
+            $("button").css("background-color", "#ffffff");
+            $("#mogButton").css("background-color", "#ffa500");
+        });
+        $("#olafButton").click(function () {
+            $("#olaf").show(500);
+            $("#lavender").hide(500);
+            $("#mog").hide(500);
+            $("#mimi").hide(500);
+            $("#minerva").hide(500);
+            $("button").css("background-color", "#ffffff");
+            $("#olafButton").css("background-color", "#ffa500");
+        });
+        $("#mimiButton").click(function () {
+            $("#mimi").show(500);
+            $("#lavender").hide(500);
+            $("#mog").hide(500);
+            $("#olaf").hide(500);
+            $("#minerva").hide(500);
+            $("button").css("background-color", "#ffffff");
+            $("#mimiButton").css("background-color", "#ffa500");
+        });
+        $("#minervaButton").click(function () {
+            $("#minerva").show(500);
+            $("#lavender").hide(500);
+            $("#mog").hide(500);
+            $("#olaf").hide(500);
+            $("#mimi").hide(500);
+            $("button").css("background-color", "#ffffff");
+            $("#minervaButton").css("background-color", "#ffa500");
+        });
+        /*This function handles what happens when an image is clicked. The ID of the clicked image is changed to "selected", so that everything except it can be hidden.
+        Additionally, classes are added and removed to increase the size of the image, depending on the size of the user's screen. Lastly, the background is changed to
+        black and the X button appears.*/
+        $(".catimg").click(function () {
+            $(event.target).prop("id", "selected");
+            if ($(window).width() > 768) {
+                $(event.target).addClass("catimg-lightbox-pc").removeClass("catimg");
+            } else {
+                $(event.target).addClass("catimg-lightbox").removeClass("catimg");
+            }
+            $("header").hide();
+            $("footer").hide();
+            $(".catimg:not(#selected)").hide();
+            $("body").css("background-color", "#000000");
+            $(".material-symbols-outlined").show();
+        })
+        /*This function handles what happens when the X button is clicked in lightbox mode. All of the elements appear, and the background is changed back to its normal
+        color. Additionally, the "selected" ID is used along with CSS classes to change the size of the selected image back to normal. The "selected" ID is then removed so
+        another image can be selected. Lastly, the X button disappears.*/
+        $("#close-button").click(function () {
+            $("header").show();
+            $("footer").show();
+            $(".catimg").show();
+            $("body").css("background-color", "#181818");
+            $("#selected").addClass("catimg").removeClass("catimg-lightbox").removeClass("catimg-lightbox-pc");
+            $("#selected").prop("id", "imgid");
+            $(".material-symbols-outlined").hide();
+        })
+    </script>
+</body>
+
+</html>
